@@ -56,7 +56,7 @@ That makes it useful for both research and production draft workflows.
 - write titles, subtitles, links, lists, code blocks, images, and body content through the verified editor path
 - audit and optimize draft packaging before publishing
 - clone, replace, repair, delete, and restore Medium posts with explicit tooling
-- import GitHub gists and turn them into cleaner Medium drafts
+- import GitHub gists and GitHub repositories and turn them into cleaner Medium drafts
 
 ## Quickstart
 
@@ -123,7 +123,7 @@ flowchart LR
 | Session | Cookie parsing, redaction, diagnostics, transport health | `setup-medium-session`, `inspect-medium-session-config`, `doctor-medium-mcp`, `probe-medium-session` |
 | GraphQL | Discovery, replay, operation capture, live metadata/publish workflows | `discover-medium-graphql`, `capture-medium-graphql-operations`, `medium-graphql-request`, `run-medium-graphql-operation` |
 | Legacy editor | Real body writing and delta-based post repair | `create-medium-legacy-draft`, `apply-medium-legacy-deltas`, `write-medium-rich-draft`, `create-medium-rich-draft` |
-| Content pipeline | Gist import, draft audit, package optimization, article restructuring | `import-gist`, `prepare-gist-draft`, `audit-medium-draft`, `optimize-medium-draft-package`, `optimize-medium-article-draft` |
+| Content pipeline | Gist import, GitHub repo import, draft audit, package optimization, article restructuring | `import-gist`, `prepare-gist-draft`, `import-github-repo`, `prepare-github-repo-draft`, `audit-medium-draft`, `optimize-medium-draft-package`, `optimize-medium-article-draft` |
 | Post operations | Inspection, visibility fixes, share keys, clone/replace, delete/restore | `inspect-medium-post-state`, `optimize-medium-post`, `optimize-medium-visibility`, `create-medium-share-key`, `delete-medium-post`, `undelete-medium-post` |
 
 ## Research-Backed Surfaces
@@ -181,7 +181,7 @@ The post workflow layer came out of fixing real broken posts, not toy examples:
 ## Example Workflow
 
 ```text
-gist -> normalize source -> audit draft -> optimize package -> write legacy body
+gist or repo -> normalize source -> audit draft -> optimize package -> write legacy body
      -> apply GraphQL metadata -> verify public state -> publish or repair
 ```
 
@@ -197,6 +197,7 @@ src/
   medium-rich-draft.ts       markdown -> Medium paragraph writer
   medium-post-workflows.ts   post inspection, repair, clone, replace, delete
   gist.ts                    gist import and Medium-oriented draft prep
+  github-repo.ts             GitHub repository import and Medium-oriented draft prep
   medium-*-optimizer.ts      package and article optimization
 
 docs/

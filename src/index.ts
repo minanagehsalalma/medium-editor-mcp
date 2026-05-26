@@ -6,6 +6,7 @@ import { z } from 'zod';
 import MediumAuth from './auth';
 import MediumClient from './client';
 import GistClient from './gist';
+import GitHubRepoClient from './github-repo';
 import MediumGraphqlClient from './medium-graphql';
 import MediumGraphqlDiscovery, {
   buildOperationRegistryDocument,
@@ -58,6 +59,13 @@ const importGistInput: any = {
   maxFileChars: z.number().int().min(500).max(100000).optional()
 };
 
+const importGitHubRepoInput: any = {
+  repo: z.string().min(1, 'GitHub repository URL or owner/repo is required'),
+  includeFileContents: z.boolean().optional(),
+  maxFileChars: z.number().int().min(500).max(100000).optional(),
+  maxFiles: z.number().int().min(1).max(40).optional()
+};
+
 const setupMediumSessionInput: any = {
   cookiesJson: z.string().optional(),
   cookieHeader: z.string().optional(),
@@ -76,6 +84,16 @@ const prepareGistDraftInput: any = {
   callToAction: z.string().optional(),
   includeFileContents: z.boolean().optional(),
   maxFileChars: z.number().int().min(500).max(100000).optional()
+};
+
+const prepareGitHubRepoDraftInput: any = {
+  repo: z.string().min(1, 'GitHub repository URL or owner/repo is required'),
+  angle: z.string().optional(),
+  audience: z.string().optional(),
+  callToAction: z.string().optional(),
+  includeFileContents: z.boolean().optional(),
+  maxFileChars: z.number().int().min(500).max(100000).optional(),
+  maxFiles: z.number().int().min(1).max(40).optional()
 };
 
 const auditMediumDraftInput: any = {
@@ -272,6 +290,18 @@ const createGistLegacyDraftInput: any = {
   append: z.boolean().optional()
 };
 
+const createGitHubRepoLegacyDraftInput: any = {
+  repo: z.string().min(1, 'GitHub repository URL or owner/repo is required'),
+  angle: z.string().optional(),
+  audience: z.string().optional(),
+  callToAction: z.string().optional(),
+  subtitle: z.string().optional(),
+  includeFileContents: z.boolean().optional(),
+  maxFileChars: z.number().int().min(500).max(100000).optional(),
+  maxFiles: z.number().int().min(1).max(40).optional(),
+  append: z.boolean().optional()
+};
+
 const cloneMediumPostInput: any = {
   postId: z.string().min(1, 'Source post ID is required'),
   title: z.string().optional(),
@@ -383,6 +413,7 @@ class MediumMcpServer {
   private mediumClient: MediumClient;
   private auth: MediumAuth;
   private gistClient: GistClient;
+  private gitHubRepoClient: GitHubRepoClient;
   private mediumGraphqlClient: MediumGraphqlClient;
   private mediumGraphqlDiscovery: MediumGraphqlDiscovery;
   private mediumLegacyEditorClient: MediumLegacyEditorClient;
@@ -395,6 +426,7 @@ class MediumMcpServer {
     this.auth = new MediumAuth();
     this.mediumClient = new MediumClient(this.auth);
     this.gistClient = new GistClient();
+    this.gitHubRepoClient = new GitHubRepoClient();
     this.mediumGraphqlClient = new MediumGraphqlClient();
     this.mediumGraphqlDiscovery = new MediumGraphqlDiscovery(this.mediumGraphqlClient);
     this.mediumLegacyEditorClient = new MediumLegacyEditorClient();
@@ -562,6 +594,19 @@ class MediumMcpServer {
     );
 
     this.server.tool(
+      'import-github-repo',
+      'Import a GitHub repository by URL or owner/repo, fetch the README plus key files, and normalize the repo into a Medium-friendly source package.',
+      importGitHubRepoInput,
+      async (args: any) => {
+        try {
+          return jsonContent(await this.gitHubRepoClient.importRepository(args.repo, args));
+        } catch (error: any) {
+          return errorContent(`Error importing GitHub repo: ${error.message}`);
+        }
+      }
+    );
+
+    this.server.tool(
       'prepare-gist-draft',
       'Build a Medium-ready draft template from a GitHub Gist with Medium-specific title, subtitle, SEO, tag, and readability heuristics baked in.',
       prepareGistDraftInput,
@@ -570,6 +615,19 @@ class MediumMcpServer {
           return jsonContent(await this.gistClient.prepareMediumDraft(args.gist, args));
         } catch (error: any) {
           return errorContent(`Error preparing gist draft: ${error.message}`);
+        }
+      }
+    );
+
+    this.server.tool(
+      'prepare-github-repo-draft',
+      'Prepare a Medium-oriented article draft from a GitHub repository, using the README, repo images, and key files instead of a gist source.',
+      prepareGitHubRepoDraftInput,
+      async (args: any) => {
+        try {
+          return jsonContent(await this.gitHubRepoClient.prepareMediumDraft(args.repo, args));
+        } catch (error: any) {
+          return errorContent(`Error preparing GitHub repo draft: ${error.message}`);
         }
       }
     );
@@ -1024,6 +1082,30 @@ class MediumMcpServer {
           });
         } catch (error: any) {
           return errorContent(`Error creating gist-based Medium legacy draft: ${error.message}`);
+        }
+      }
+    );
+
+    this.server.tool(
+      'create-github-repo-legacy-draft',
+      'Prepare a Medium-oriented article from a GitHub repository and write it into the legacy Medium body editor through observed delta operations.',
+      createGitHubRepoLegacyDraftInput,
+      async (args: any) => {
+        try {
+          const prepared = await this.gitHubRepoClient.prepareMediumDraft(args.repo, args);
+          const draft = await this.mediumRichDraftWriter.createDraft({
+            title: prepared.mediumTitle,
+            subtitle: args.subtitle || prepared.mediumSubtitle,
+            markdown: prepared.mediumBodyMarkdown,
+            append: args.append
+          });
+
+          return jsonContent({
+            prepared,
+            draft
+          });
+        } catch (error: any) {
+          return errorContent(`Error creating GitHub repo-based Medium legacy draft: ${error.message}`);
         }
       }
     );
