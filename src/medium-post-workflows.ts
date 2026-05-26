@@ -4,6 +4,7 @@ import { assessMediumPostAppeal } from './medium-content-strategy';
 import { optimizeMediumDraftPackage } from './medium-draft-optimizer';
 import { optimizeMediumArticleDraft } from './medium-article-optimizer';
 import MediumRichDraftWriter from './medium-rich-draft';
+import * as fs from 'fs';
 
 export interface CloneMediumPostInput {
   canonicalUrl?: string;
@@ -253,6 +254,53 @@ function buildParagraphName(prefix: string) {
   return `${prefix}${Math.random().toString(16).slice(2, 6)}`;
 }
 
+function getLocalImageDimensions(imagePath: string) {
+  const buffer = fs.readFileSync(imagePath);
+
+  if (
+    buffer.length >= 24
+    && buffer[0] === 0x89
+    && buffer[1] === 0x50
+    && buffer[2] === 0x4e
+    && buffer[3] === 0x47
+  ) {
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20)
+    };
+  }
+
+  if (buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8) {
+    let offset = 2;
+    while (offset + 9 < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+
+      const marker = buffer[offset + 1];
+      const length = buffer.readUInt16BE(offset + 2);
+      const isStartOfFrame = (
+        (marker >= 0xc0 && marker <= 0xc3)
+        || (marker >= 0xc5 && marker <= 0xc7)
+        || (marker >= 0xc9 && marker <= 0xcb)
+        || (marker >= 0xcd && marker <= 0xcf)
+      );
+
+      if (isStartOfFrame) {
+        return {
+          height: buffer.readUInt16BE(offset + 5),
+          width: buffer.readUInt16BE(offset + 7)
+        };
+      }
+
+      offset += 2 + length;
+    }
+  }
+
+  throw new Error(`Unsupported image format for dimension detection: ${imagePath}`);
+}
+
 function extractIntroParagraphText(postValue: MediumPostValue): string | undefined {
   const paragraphs = postValue.content?.bodyModel?.paragraphs || [];
   const titleIndex = findTitleParagraphIndex(paragraphs);
@@ -327,9 +375,16 @@ class MediumPostWorkflows {
       imgWidth?: number;
     };
 
-    if (!uploadValue.fileId || !uploadValue.imgWidth || !uploadValue.imgHeight) {
-      throw new Error('Medium image upload did not return fileId/imgWidth/imgHeight.');
+    if (!uploadValue.fileId) {
+      throw new Error('Medium image upload did not return fileId.');
     }
+
+    const dimensions = uploadValue.imgWidth && uploadValue.imgHeight
+      ? {
+          width: uploadValue.imgWidth,
+          height: uploadValue.imgHeight
+        }
+      : getLocalImageDimensions(imagePath);
 
     const paragraph = {
       name: hasImageMetadata(paragraphs[coverIndex]) ? paragraphs[coverIndex].name || buildParagraphName('cov') : buildParagraphName('cov'),
@@ -339,8 +394,8 @@ class MediumPostWorkflows {
       layout: 1,
       metadata: {
         id: uploadValue.fileId,
-        originalWidth: uploadValue.imgWidth,
-        originalHeight: uploadValue.imgHeight
+        originalWidth: dimensions.width,
+        originalHeight: dimensions.height
       }
     };
 
