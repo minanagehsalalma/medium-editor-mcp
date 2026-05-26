@@ -1,0 +1,188 @@
+{
+  "operations": {
+    "viewer-query": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/me/stories/drafts",
+      "body": {
+        "operationName": "ViewerQuery",
+        "variables": {},
+        "query": "query ViewerQuery {\n  viewer {\n    id\n  }\n}"
+      }
+    },
+    "writer-drafts": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/me/stories",
+      "body": {
+        "operationName": "WriterPostsTableDraftsQuery",
+        "variables": {
+          "pagingOptions": {
+            "limit": 10
+          }
+        },
+        "query": "query WriterPostsTableDraftsQuery($pagingOptions: PagingOptions, $withSubmissionsInPost: Boolean = true) {\n  viewer {\n    id\n    latestPostsConnection(type: POST_TYPE_DRAFT, includeResponses: false, includeSuspended: true, includeDeleted: false, paging: $pagingOptions) {\n      pagingInfo {\n        next {\n          limit\n          to\n        }\n      }\n      postPreviews {\n        postId\n      }\n    }\n  }\n}"
+      }
+    },
+    "post-settings": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "PostSettings",
+        "variables": {
+          "postId": "REPLACE_POST_ID"
+        },
+        "query": "query PostSettings($postId: ID!, $postMeteringOptions: PostMeteringOptions) {\n  postResult(id: $postId) {\n    __typename\n    ... on Post {\n      id\n      title\n      canonicalUrl\n      defaultCanonicalUrl\n      uniqueSlug\n      seoTitle\n      seoDescription\n      license\n      isLocked\n      viewerEdge {\n        id\n        canOverrideCanonicalUrl\n      }\n      tagsConnection {\n        edges {\n          node {\n            normalizedTagSlug\n          }\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    "update-canonical-url": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "UpdateCanonicalUrl",
+        "variables": {
+          "input": {
+            "postId": "REPLACE_POST_ID",
+            "url": "https://example.com/original-article"
+          }
+        },
+        "query": "mutation UpdateCanonicalUrl($input: UpdateCanonicalUrlInput!) {\n  updateCanonicalUrl(input: $input) {\n    __typename\n  }\n}"
+      }
+    },
+    "set-post-slug": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "SetPostSlugMutation",
+        "variables": {
+          "postId": "REPLACE_POST_ID",
+          "slug": "replace-with-custom-slug"
+        },
+        "query": "mutation SetPostSlugMutation($postId: ID!, $slug: String!) {\n  setPostSlug(targetPostId: $postId, slug: $slug) {\n    __typename\n    id\n    draftUrl\n    uniqueSlug\n  }\n}"
+      }
+    },
+    "set-post-tags": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "SetPostTagsMutation",
+        "variables": {
+          "targetPostId": "REPLACE_POST_ID",
+          "tagNames": [
+            "security",
+            "writing",
+            "medium"
+          ]
+        },
+        "query": "mutation SetPostTagsMutation($targetPostId: ID!, $tagNames: [String!]!) {\n  __typename\n  setPostTags(targetPostId: $targetPostId, tagNames: $tagNames) {\n    __typename\n    id\n  }\n}"
+      }
+    },
+    "set-post-seo-title": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "PostSettingsSeoTitleMutation",
+        "variables": {
+          "targetPostId": "REPLACE_POST_ID",
+          "seoTitle": "Replace with SEO title"
+        },
+        "query": "mutation PostSettingsSeoTitleMutation($targetPostId: ID!, $seoTitle: String!) {\n  setPostSeoTitle(targetPostId: $targetPostId, seoTitle: $seoTitle) {\n    id\n    title\n    seoTitle\n  }\n}"
+      }
+    },
+    "set-post-seo-description": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "PostSettingsSeoDescriptionMutation",
+        "variables": {
+          "targetPostId": "REPLACE_POST_ID",
+          "seoDescription": "Replace with SEO description"
+        },
+        "query": "mutation PostSettingsSeoDescriptionMutation($targetPostId: ID!, $seoDescription: String!, $postMeteringOptions: PostMeteringOptions) {\n  setPostSeoDescription(targetPostId: $targetPostId, seoDescription: $seoDescription) {\n    id\n    seoDescription\n  }\n}"
+      }
+    },
+    "set-post-content-license": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "setPostContentLicense",
+        "variables": {
+          "postId": "REPLACE_POST_ID",
+          "license": 0
+        },
+        "query": "mutation setPostContentLicense($postId: String!, $license: Int!) {\n  setPostContentLicense(postId: $postId, license: $license) {\n    id\n    license\n  }\n}"
+      }
+    },
+    "set-publishing-flow-defaults": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/submission",
+      "body": {
+        "operationName": "SetPublishingFlowDefaultsMutation",
+        "variables": {
+          "postId": "REPLACE_POST_ID"
+        },
+        "query": "mutation SetPublishingFlowDefaultsMutation($postId: ID!) {\n  setPublishingFlowDefaults(input: { targetPostId: $postId }) {\n    __typename\n    ... on Post {\n      id\n      isLocked\n      isPublishToEmail\n    }\n  }\n}"
+      }
+    },
+    "stage-update-post-metadata": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/submission",
+      "body": {
+        "operationName": "UpdateSubmitFormStoryPreviewMetadataMutation",
+        "variables": {
+          "input": {
+            "targetPostId": "REPLACE_POST_ID"
+          }
+        },
+        "query": "mutation UpdateSubmitFormStoryPreviewMetadataMutation($input: StageUpdatePostMetadataInput!) {\n  stageUpdatePostMetadata(input: $input) {\n    __typename\n  }\n}"
+      }
+    },
+    "submit-publish-post": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/submission",
+      "body": {
+        "operationName": "SubmitPublishPostMutation",
+        "variables": {
+          "input": {}
+        },
+        "query": "mutation SubmitPublishPostMutation($input: SetPostPublishedInput!) {\n  setPostPublished(input: $input) {\n    __typename\n  }\n}"
+      }
+    },
+    "create-post-share-key": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/me/stories",
+      "body": {
+        "operationName": "CreatePostShareKeyMutation",
+        "variables": {
+          "postId": "REPLACE_POST_ID"
+        },
+        "query": "mutation CreatePostShareKeyMutation($postId: ID!) {\n  createPostShareKey(postId: $postId) {\n    __typename\n    ... on PostShareKey {\n      key\n    }\n  }\n}"
+      }
+    },
+    "set-post-publication-featured": {
+      "endpoint": "https://medium.com/_/graphql",
+      "source": "codex-medium-mcp-live-test",
+      "referer": "https://medium.com/p/REPLACE_POST_ID/settings",
+      "body": {
+        "operationName": "SetPostPublicationFeaturedMutation",
+        "variables": {
+          "postId": "REPLACE_POST_ID",
+          "pubId": "REPLACE_PUBLICATION_ID",
+          "featured": true
+        },
+        "query": "mutation SetPostPublicationFeaturedMutation($postId: ID!, $pubId: ID!, $featured: Boolean!) {\n  setPostPublicationFeatured(input: { postId: $postId, publicationId: $pubId, featured: $featured }) {\n    __typename\n    ... on MutationSuccess {\n      success\n    }\n  }\n}"
+      }
+    }
+  }
+}

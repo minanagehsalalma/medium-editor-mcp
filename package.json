@@ -1,0 +1,39 @@
+{
+  "name": "medium-editor-mcp",
+  "version": "2.0.0",
+  "description": "Research-first MCP server for Medium editor discovery, GraphQL replay, legacy delta writing, and gist-driven article workflows",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "medium",
+    "api",
+    "mcp",
+    "model-context-protocol",
+    "content-publishing"
+  ],
+  "author": "Mina Nageh Zekry",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "axios": "^1.16.1",
+    "dotenv": "^16.3.1",
+    "playwright": "^1.56.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.6",
+    "@types/node": "^20.8.10",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.11",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
+}

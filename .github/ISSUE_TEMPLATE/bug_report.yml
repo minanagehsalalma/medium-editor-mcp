@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a real break in the MCP, transport, writer path, or documented workflow.
+title: "[bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What broke
+      description: State the actual failure in one or two direct sentences.
+      placeholder: The legacy delta writer creates the draft shell, but the title paragraph is not promoted to the Medium title block.
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which surface failed
+      options:
+        - Session / cookies
+        - GraphQL replay
+        - Legacy delta editor
+        - Gist pipeline
+        - Post workflow
+        - Browser fallback
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction
+      description: Include the exact tool call, command, or local script path.
+      placeholder: |
+        1. Run doctor-medium-mcp
+        2. Call create-medium-rich-draft with ...
+        3. Open the resulting draft and observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs or evidence
+      description: Redact cookies, tokens, and account-specific secrets before pasting.
+      render: shell
+

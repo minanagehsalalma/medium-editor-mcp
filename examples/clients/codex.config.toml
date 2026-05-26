@@ -1,0 +1,4 @@
+[mcp_servers.mediumEditor]
+command = "node"
+args = ["E:\\path\\to\\medium-editor-mcp\\dist\\index.js"]
+

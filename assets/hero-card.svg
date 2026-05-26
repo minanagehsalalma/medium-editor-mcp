@@ -1,0 +1,279 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="128" y1="54" x2="1505" y2="851" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071017"/>
+      <stop offset="0.55" stop-color="#081219"/>
+      <stop offset="1" stop-color="#0A1813"/>
+    </linearGradient>
+    <linearGradient id="greenLine" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#73FF9A"/>
+      <stop offset="1" stop-color="#23D96B"/>
+    </linearGradient>
+    <linearGradient id="softGreen" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#173025"/>
+      <stop offset="1" stop-color="#0C1E18"/>
+    </linearGradient>
+    <filter id="blurA" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <filter id="shadow" x="-20" y="-20" width="1640" height="940" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="30" fill="url(#bg)"/>
+
+  <g opacity="0.45" filter="url(#blurA)">
+    <circle cx="1342" cy="705" r="150" fill="#16A34A"/>
+    <circle cx="1168" cy="766" r="108" fill="#0EA5E9" fill-opacity="0.55"/>
+  </g>
+
+  <g opacity="0.2">
+    <path d="M991 109H1422C1435.25 109 1446 119.75 1446 133V419" stroke="#173E31" stroke-width="2"/>
+    <path d="M879 171H1347C1360.25 171 1371 181.75 1371 195V473" stroke="#173E31" stroke-width="2"/>
+    <path d="M1032 104H1380C1392.15 104 1402 113.85 1402 126V420" stroke="#173E31" stroke-dasharray="4 8"/>
+    <path d="M1230 275H1510" stroke="#173E31" stroke-dasharray="4 8"/>
+    <path d="M1218 626H1510" stroke="#173E31" stroke-dasharray="4 8"/>
+  </g>
+
+  <text x="62" y="233" fill="white" font-size="104" font-family="Segoe UI, Arial, sans-serif" font-weight="700" letter-spacing="-2">
+    Medium Editor MCP
+  </text>
+
+  <text x="62" y="317" fill="#D1D8DE" font-size="40" font-family="Segoe UI, Arial, sans-serif" font-weight="500">
+    Research-first MCP for Medium editor discovery,
+  </text>
+  <text x="62" y="387" fill="#D1D8DE" font-size="40" font-family="Segoe UI, Arial, sans-serif" font-weight="500">
+    GraphQL replay, legacy delta writing, post repair,
+  </text>
+  <text x="62" y="457" fill="#D1D8DE" font-size="40" font-family="Segoe UI, Arial, sans-serif" font-weight="500">
+    and gist-to-draft workflows
+  </text>
+
+  <rect x="58" y="503" width="110" height="4" rx="2" fill="#45F17E"/>
+
+  <g filter="url(#shadow)">
+    <rect x="58" y="550" width="856" height="90" rx="24" fill="#0C1217" stroke="#1A2420"/>
+    <g fill="#DDE6EA" font-family="Segoe UI, Arial, sans-serif" font-size="23" font-weight="600">
+      <g>
+        <rect x="79" y="567" width="172" height="56" rx="18" fill="#10171D" stroke="#26332E"/>
+        <circle cx="106" cy="595" r="15" stroke="#59F083" stroke-width="2"/>
+        <circle cx="106" cy="595" r="4" fill="#59F083"/>
+        <path d="M94 603L118 587M94 587L118 603" stroke="#59F083" stroke-width="2"/>
+        <text x="134" y="591">GraphQL</text>
+        <text x="134" y="619">Discovery</text>
+      </g>
+      <circle cx="268" cy="595" r="4" fill="#3BE170"/>
+      <g>
+        <rect x="292" y="567" width="180" height="56" rx="18" fill="#10171D" stroke="#26332E"/>
+        <path d="M317 587L340 579L362 592L340 605L317 597Z" stroke="#59F083" stroke-width="2"/>
+        <path d="M317 587V605L340 617L362 605V592" stroke="#59F083" stroke-width="2"/>
+        <text x="383" y="591">Legacy</text>
+        <text x="383" y="619">Delta Writing</text>
+      </g>
+      <circle cx="492" cy="595" r="4" fill="#3BE170"/>
+      <g>
+        <rect x="516" y="567" width="178" height="56" rx="18" fill="#10171D" stroke="#26332E"/>
+        <path d="M538 597H557M547 580V610M538 597C538 587 543 580 547 580C551 580 557 587 557 597C557 607 551 614 547 614C543 614 538 607 538 597Z" stroke="#59F083" stroke-width="2"/>
+        <text x="578" y="591">Session</text>
+        <text x="578" y="619">Diagnostics</text>
+      </g>
+      <circle cx="714" cy="595" r="4" fill="#3BE170"/>
+      <g>
+        <rect x="738" y="567" width="160" height="56" rx="18" fill="#10171D" stroke="#26332E"/>
+        <path d="M761 607L774 594L786 606M773 595L773 582M783 613L792 604L806 590" stroke="#59F083" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="817" y="591">Post</text>
+        <text x="817" y="619">Repair</text>
+      </g>
+      <circle cx="918" cy="595" r="4" fill="#3BE170"/>
+      <g>
+        <rect x="942" y="567" width="152" height="56" rx="18" fill="#10171D" stroke="#26332E"/>
+        <path d="M967 580H988L1003 595V611H967Z" stroke="#59F083" stroke-width="2"/>
+        <path d="M988 580V595H1003" stroke="#59F083" stroke-width="2"/>
+        <path d="M982 604H989L995 610" stroke="#59F083" stroke-width="2" stroke-linecap="round"/>
+        <text x="1020" y="591">Gist →</text>
+        <text x="1020" y="619">Draft</text>
+      </g>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="83" y="734" width="410" height="72" rx="26" fill="#0E141A" stroke="#22312A"/>
+    <path d="M118 781L128 771L118 761" stroke="#57EF82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M129 781H140" stroke="#57EF82" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="215" cy="771" r="3.5" fill="#45F17E"/>
+    <circle cx="364" cy="771" r="3.5" fill="#45F17E"/>
+    <text x="171" y="781" fill="#DCE5EA" font-size="25" font-family="Segoe UI, Arial, sans-serif">Node 18+</text>
+    <text x="245" y="781" fill="#DCE5EA" font-size="25" font-family="Segoe UI, Arial, sans-serif">TypeScript</text>
+    <text x="389" y="781" fill="#DCE5EA" font-size="25" font-family="Segoe UI, Arial, sans-serif">MCP</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="952" y="182" width="272" height="274" rx="22" fill="#0D1419" stroke="#31443B"/>
+    <text x="974" y="223" fill="#64F18B" font-size="21" font-family="Segoe UI, Arial, sans-serif">GraphQL Discovery</text>
+    <circle cx="1194" cy="214" r="4" fill="#52EF84"/>
+    <rect x="980" y="250" width="214" height="176" rx="14" fill="#0A1014" stroke="#1C2622"/>
+    <g fill="#E4EBEF" font-family="Consolas, monospace" font-size="16">
+      <text x="1000" y="286">query Post($id: ID!) {</text>
+      <text x="1024" y="324">post(id: $id) {</text>
+      <text x="1062" y="362">id</text>
+      <text x="1062" y="400">title</text>
+      <text x="1062" y="438">blocks {</text>
+      <text x="1100" y="476">id</text>
+      <text x="1100" y="514">type</text>
+      <text x="1100" y="552">text</text>
+      <text x="1062" y="590">}</text>
+      <text x="1024" y="628">}</text>
+      <text x="1000" y="666">}</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1227" y="73" width="322" height="76" rx="22" fill="#0D1419" stroke="#21352C"/>
+    <path d="M1258 95L1272 87L1286 95V112L1272 120L1258 112Z" stroke="#5BF187" stroke-width="2"/>
+    <path d="M1258 95L1272 104L1286 95" stroke="#5BF187" stroke-width="2"/>
+    <path d="M1272 104V120" stroke="#5BF187" stroke-width="2"/>
+    <text x="1300" y="113" fill="#74F59A" font-size="20" font-family="Segoe UI, Arial, sans-serif">MCP Orchestrator</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1148" y="126" width="274" height="449" rx="24" fill="#0D1419" stroke="#223B30"/>
+    <text x="1177" y="178" fill="#74F59A" font-size="24" font-family="Segoe UI, Arial, sans-serif">Request Flow</text>
+
+    <g font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#E6EDF0">
+      <rect x="1180" y="212" width="202" height="66" rx="18" fill="#10171D"/>
+      <circle cx="1211" cy="245" r="19" stroke="#3DED74" stroke-width="2"/>
+      <path d="M1198 245H1224M1211 232C1217 238 1217 252 1211 258M1211 232C1205 238 1205 252 1211 258" stroke="#3DED74" stroke-width="2"/>
+      <text x="1254" y="251">DISCOVER</text>
+
+      <path d="M1212 278V308" stroke="#4AEC7C" stroke-width="3"/>
+      <path d="M1205 300L1212 309L1219 300" stroke="#4AEC7C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <rect x="1180" y="316" width="202" height="66" rx="18" fill="#111B18"/>
+      <rect x="1193" y="330" width="38" height="38" rx="12" fill="#0D1419" stroke="#1E3328"/>
+      <circle cx="1212" cy="349" r="7" stroke="#3DED74" stroke-width="2"/>
+      <path d="M1212 338V330M1212 368V360M1201 349H1193M1231 349H1223M1204 341L1198 335M1220 357L1226 363M1220 341L1226 335M1204 357L1198 363" stroke="#3DED74" stroke-width="2" stroke-linecap="round"/>
+      <text x="1254" y="346">GraphQL</text>
+      <text x="1254" y="372">REPLAY</text>
+
+      <path d="M1212 382V412" stroke="#4AEC7C" stroke-width="3"/>
+      <path d="M1205 404L1212 413L1219 404" stroke="#4AEC7C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <rect x="1180" y="420" width="202" height="66" rx="18" fill="#10171D"/>
+      <rect x="1193" y="434" width="38" height="38" rx="12" fill="#0D1419" stroke="#1E3328"/>
+      <path d="M1204 445L1212 437L1220 445L1212 453Z" stroke="#3DED74" stroke-width="2"/>
+      <path d="M1204 445V461L1212 469L1220 461V445" stroke="#3DED74" stroke-width="2"/>
+      <text x="1254" y="451">DELTA</text>
+      <text x="1254" y="477">WRITE</text>
+
+      <path d="M1212 486V516" stroke="#4AEC7C" stroke-width="3"/>
+      <path d="M1205 508L1212 517L1219 508" stroke="#4AEC7C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <rect x="1180" y="524" width="202" height="66" rx="18" fill="#10171D"/>
+      <rect x="1193" y="538" width="38" height="38" rx="12" fill="#0D1419" stroke="#1E3328"/>
+      <path d="M1203 567L1215 555L1220 560L1208 572L1202 573Z" stroke="#3DED74" stroke-width="2" stroke-linejoin="round"/>
+      <text x="1254" y="555">REPAIR</text>
+      <text x="1254" y="581">POST</text>
+
+      <path d="M1212 590V620" stroke="#4AEC7C" stroke-width="3"/>
+      <path d="M1205 612L1212 621L1219 612" stroke="#4AEC7C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <rect x="1180" y="628" width="202" height="66" rx="18" fill="#10171D"/>
+      <rect x="1193" y="642" width="38" height="38" rx="12" fill="#0D1419" stroke="#1E3328"/>
+      <path d="M1203 643H1221L1229 651V677H1203Z" stroke="#3DED74" stroke-width="2"/>
+      <path d="M1221 643V651H1229" stroke="#3DED74" stroke-width="2"/>
+      <text x="1254" y="659">GIST → DRAFT</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1357" y="202" width="196" height="302" rx="22" fill="#0D1419" stroke="#31443B"/>
+    <text x="1381" y="243" fill="#74F59A" font-size="21" font-family="Segoe UI, Arial, sans-serif">Session Diagnostics</text>
+    <circle cx="1528" cy="234" r="4" fill="#52EF84"/>
+    <g font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#E7EEF1">
+      <rect x="1381" y="270" width="148" height="184" rx="16" fill="#0F171C" stroke="#1E2A24"/>
+      <g>
+        <path d="M1404 300C1404 292 1409 286 1416 286C1423 286 1428 292 1428 300V310H1404V300Z" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1408 310V323H1424V310" stroke="#54EF84" stroke-width="2"/>
+        <text x="1442" y="310">Auth</text>
+        <circle cx="1512" cy="304" r="10" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1507 304L1511 308L1518 301" stroke="#54EF84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g>
+        <path d="M1404 347C1404 341 1408 336 1414 336C1420 336 1424 341 1424 347C1424 353 1420 358 1414 358C1408 358 1404 353 1404 347Z" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1414 332V326M1401 341L1396 336M1427 341L1432 336M1401 353L1396 358M1427 353L1432 358" stroke="#54EF84" stroke-width="2" stroke-linecap="round"/>
+        <text x="1442" y="352">GraphQL</text>
+        <circle cx="1512" cy="346" r="10" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1507 346L1511 350L1518 343" stroke="#54EF84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g>
+        <path d="M1402 389L1414 384L1426 390L1414 396Z" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1402 389V402L1414 408L1426 402V390" stroke="#54EF84" stroke-width="2"/>
+        <text x="1442" y="396">Delta Write</text>
+        <circle cx="1512" cy="390" r="10" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1507 390L1511 394L1518 387" stroke="#54EF84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g>
+        <path d="M1405 438L1414 429L1419 434L1410 443L1404 444Z" stroke="#54EF84" stroke-width="2" stroke-linejoin="round"/>
+        <text x="1442" y="439">Post Repair</text>
+        <circle cx="1512" cy="433" r="10" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1507 433L1511 437L1518 430" stroke="#54EF84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <g>
+        <path d="M1404 468H1422L1430 476V499H1404Z" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1422 468V476H1430" stroke="#54EF84" stroke-width="2"/>
+        <text x="1442" y="485">Draft Create</text>
+        <circle cx="1512" cy="479" r="10" stroke="#54EF84" stroke-width="2"/>
+        <path d="M1507 479L1511 483L1518 476" stroke="#54EF84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <circle cx="1399" cy="532" r="4" fill="#45F17E"/>
+      <text x="1414" y="538" fill="#62F28D" font-size="18">All Systems Operational</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1034" y="577" width="300" height="227" rx="22" fill="#0D1419" stroke="#31443B"/>
+    <text x="1058" y="618" fill="#74F59A" font-size="21" font-family="Segoe UI, Arial, sans-serif">Legacy Delta</text>
+    <circle cx="1292" cy="609" r="4" fill="#52EF84"/>
+    <rect x="1060" y="644" width="244" height="123" rx="14" fill="#0A1014" stroke="#1C2622"/>
+    <g font-family="Consolas, monospace" font-size="16">
+      <text x="1078" y="675" fill="#A8B4BC">@@ -12,7 +12,9 @@</text>
+      <text x="1078" y="713" fill="#CAD5DB">{ type: "p", id: "a1" }</text>
+      <text x="1078" y="751" fill="#FF6C72">- { type: "p", id: "a2", text: "…" }</text>
+      <text x="1078" y="789" fill="#42E476">+ { type: "p", id: "a2", text: "…" }</text>
+      <text x="1078" y="827" fill="#42E476">+ { type: "h2", id: "a3", text: "…" }</text>
+      <text x="1078" y="865" fill="#CAD5DB">{ type: "p", id: "a4" }</text>
+    </g>
+  </g>
+
+  <g filter="url(#shadow)">
+    <path d="M1374 692H1440L1470 722V808H1374Z" fill="#10171D" stroke="#4AE97A" stroke-width="2"/>
+    <path d="M1440 692V722H1470" stroke="#4AE97A" stroke-width="2"/>
+    <text x="1412" y="758" fill="#E8EFF2" font-size="54" font-family="Consolas, monospace">{ }</text>
+    <text x="1406" y="845" fill="#74F59A" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="600">Gist</text>
+  </g>
+
+  <path d="M1472 752H1540" stroke="url(#greenLine)" stroke-width="4"/>
+  <path d="M1530 743L1543 752L1530 761" stroke="url(#greenLine)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g filter="url(#shadow)">
+    <path d="M1554 692H1620L1650 722V808H1554Z" transform="translate(-8 0)" fill="#10171D" stroke="#4AE97A" stroke-width="2"/>
+    <path d="M1612 692V722H1642" transform="translate(-8 0)" stroke="#4AE97A" stroke-width="2"/>
+    <path d="M1578 744H1611" transform="translate(-8 0)" stroke="#E8EFF2" stroke-width="4" stroke-linecap="round"/>
+    <path d="M1578 770H1611" transform="translate(-8 0)" stroke="#E8EFF2" stroke-width="4" stroke-linecap="round"/>
+    <path d="M1578 796H1611" transform="translate(-8 0)" stroke="#E8EFF2" stroke-width="4" stroke-linecap="round"/>
+    <rect x="1577" y="796" width="40" height="30" transform="translate(-8 0)" rx="4" stroke="#4AE97A" stroke-width="2"/>
+    <path d="M1583 820L1591 810L1597 816L1605 804L1612 814" transform="translate(-8 0)" stroke="#4AE97A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1569" y="845" fill="#74F59A" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="600">Draft</text>
+  </g>
+
+  <g opacity="0.34">
+    <path d="M60 862C156 804 230 776 323 782C421 789 503 827 611 825C730 823 786 765 886 763C956 761 1017 785 1071 826" stroke="#173E31" stroke-width="2"/>
+    <path d="M71 876C180 812 263 794 350 805C426 815 521 866 621 865C732 864 803 790 885 790C960 790 1047 834 1126 876" stroke="#214B3A" stroke-width="2"/>
+    <circle cx="206" cy="853" r="4" fill="#39EB75"/>
+    <circle cx="264" cy="844" r="3" fill="#39EB75"/>
+    <circle cx="311" cy="861" r="4" fill="#39EB75"/>
+    <circle cx="478" cy="836" r="4" fill="#39EB75"/>
+    <circle cx="560" cy="842" r="4" fill="#39EB75"/>
+  </g>
+</svg>

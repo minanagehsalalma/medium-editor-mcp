@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security issue
+    url: https://github.com/minanagehsalalma/medium-editor-mcp/security/advisories/new
+    about: Use a private advisory for secrets, session leakage, or security problems.
+

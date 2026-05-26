@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "mediumEditor": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["E:\\path\\to\\medium-editor-mcp\\dist\\index.js"]
+    }
+  }
+}
+

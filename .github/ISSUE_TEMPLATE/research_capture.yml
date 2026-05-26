@@ -1,0 +1,40 @@
+name: Research capture
+description: Record a newly observed Medium editor request shape or behavioral finding.
+title: "[research] "
+labels:
+  - research
+body:
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: State the observed behavior directly.
+    validations:
+      required: true
+  - type: input
+    id: route
+    attributes:
+      label: Page or route
+      placeholder: https://medium.com/me/stories or /p/{postId}/settings
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - GraphQL
+        - Legacy delta editor
+        - Browser-only UI behavior
+        - Transport / Cloudflare
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Request or contract notes
+      description: Include the operation name, endpoint, variables, or delta structure if known.
+  - type: textarea
+    id: caveats
+    attributes:
+      label: Caveats
+      description: Note what is still uncertain so the repo does not overclaim.
+

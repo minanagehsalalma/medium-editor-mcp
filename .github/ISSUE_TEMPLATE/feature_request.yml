@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a new verified workflow or editor capability.
+title: "[feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should the repo be able to do that it cannot do now?
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Best-fit surface
+      options:
+        - Archived REST
+        - Private GraphQL
+        - Legacy delta editor
+        - Unknown yet, needs research
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Evidence or source
+      description: Link the writer page, request shape, screenshot, bundle evidence, or failure mode that justifies the feature.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification path
+      description: How should a maintainer prove the feature really works?
+
